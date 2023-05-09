@@ -4,11 +4,19 @@ import { View, TextInput, StyleSheet } from "react-native";
 //Feather is a library and you can use it as a component to import an icon named "search"
 import { Feather } from "@expo/vector-icons";
 
-const SearchBar = () => {
+const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
   return (
     <View style={styles.searchBar}>
       <Feather name="search" style={styles.iconStyle} />
-      <TextInput placeholder="Search" style={styles.input} />
+      <TextInput
+        placeholder="Search"
+        style={styles.input}
+        value={term}
+        onChangeText={onTermChange}
+        autoCapitalize="none"
+        autoCorrect={false}
+        onEndEditing={onTermSubmit}
+      />
     </View>
   );
 };
