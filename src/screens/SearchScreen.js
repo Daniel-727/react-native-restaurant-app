@@ -1,31 +1,16 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import SearchBar from "../components/SearchBar";
-import yelp from "../api/yelp";
+import useResults from "../hooks/useResults";
 
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
-  const [results, setResults] = useState([]);
-  const [error, setError] = useState("");
-
-  const searchApi = async () => {
-    try {
-      const response = await yelp.get("/search", {
-        params: {
-          limit: 50,
-          location: "san francisco",
-          term: term,
-        },
-      });
-      setResults(response.data.businesses);
-    } catch (err) {
-      setError("something went wrong");
-    }
-  };
+  // Destructuring our custom hook
+  const [results, error, searchApi] = useResults();
 
   return (
     <View style={styles.page}>
-      <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchApi} />
+      <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)} />
       {error ? <Text>{error}</Text> : <Text>We have found {results.length} results</Text>}
     </View>
   );
