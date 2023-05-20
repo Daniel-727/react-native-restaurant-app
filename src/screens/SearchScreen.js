@@ -19,7 +19,7 @@ const SearchScreen = () => {
   return (
     <View style={styles.page}>
       <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)} />
-      {error ? <Text>{error}</Text> : <Text>We have found {results.length} results</Text>}
+      {error ? <Text>{error}</Text> : null}
       <ResultsList results={filterResultsByPrice("$")} title="Cost Effective" />
       <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
       <ResultsList results={filterResultsByPrice("$$$")} title="Big Spender" />
