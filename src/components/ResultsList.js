@@ -1,10 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import ResultsDetail from "./ResultsDetail";
 
-export default ({ title, results }) => {
+export default ({ title, results, navigate }) => {
   // Results is an array of objects which contain business information
-  console.log(results);
   return (
     <View style={styles.container}>
       <Text style={styles.titleStyle}>{title}</Text>
@@ -12,7 +11,11 @@ export default ({ title, results }) => {
         data={results}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
-          return <ResultsDetail result={item} />;
+          return (
+            <TouchableOpacity onPress={() => navigate("ResultsShow")}>
+              <ResultsDetail navigate={navigate} result={item} />
+            </TouchableOpacity>
+          );
         }}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
