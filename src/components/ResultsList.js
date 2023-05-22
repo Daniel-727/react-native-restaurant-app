@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { withNavigation } from "react-navigation";
 import ResultsDetail from "./ResultsDetail";
 
-export default ({ title, results, navigate }) => {
+export default withNavigation(({ title, results, navigation }) => {
   // Results is an array of objects which contain business information
   return (
     <View style={styles.container}>
@@ -12,8 +13,8 @@ export default ({ title, results, navigate }) => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => navigate("ResultsShow")}>
-              <ResultsDetail navigate={navigate} result={item} />
+            <TouchableOpacity onPress={() => navigation.navigate("ResultsShow")}>
+              <ResultsDetail result={item} />
             </TouchableOpacity>
           );
         }}
@@ -22,7 +23,7 @@ export default ({ title, results, navigate }) => {
       ></FlatList>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

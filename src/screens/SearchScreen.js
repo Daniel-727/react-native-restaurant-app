@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
 
-const SearchScreen = ({ navigation }) => {
+const SearchScreen = () => {
   const [term, setTerm] = useState("");
   // Destructuring our custom hook
   const [results, error, searchApi] = useResults();
@@ -23,10 +23,10 @@ const SearchScreen = ({ navigation }) => {
       <SearchBar term={term} onTermChange={setTerm} onTermSubmit={() => searchApi(term)} />
       {error ? <Text>{error}</Text> : null}
       <ScrollView>
-        <ResultsList navigate={navigation.navigate} results={filterResultsByPrice("$")} title="Cost Effective" />
-        <ResultsList navigate={navigation.navigate} results={filterResultsByPrice("$$")} title="Bit Pricier" />
-        <ResultsList navigate={navigation.navigate} results={filterResultsByPrice("$$$")} title="Big Spender" />
-        <ResultsList navigate={navigation.navigate} results={filterResultsByPrice("$$$$")} title="Chamillionaire" />
+        <ResultsList results={filterResultsByPrice("$")} title="Cost Effective" />
+        <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
+        <ResultsList results={filterResultsByPrice("$$$")} title="Big Spender" />
+        <ResultsList results={filterResultsByPrice("$$$$")} title="Chamillionaire" />
       </ScrollView>
     </View>
   );
