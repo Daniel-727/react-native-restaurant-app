@@ -13,7 +13,8 @@ export default withNavigation(({ title, results, navigation }) => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => navigation.navigate("ResultsShow")}>
+            /* Passing in an object in the navigate function is similar to passing props to a child component, the specified screen will now have the data that you passed */
+            <TouchableOpacity onPress={() => navigation.navigate("ResultsShow", { id: item.id })}>
               <ResultsDetail result={item} />
             </TouchableOpacity>
           );

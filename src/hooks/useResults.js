@@ -7,7 +7,7 @@ export default () => {
   const [error, setError] = useState("");
 
   const searchApi = async (searchTerm) => {
-    console.log("hi");
+    /* console.log("hi"); */
     try {
       const response = await yelp.get("/search", {
         params: {
@@ -22,6 +22,7 @@ export default () => {
     }
   };
 
+  // useEffect runs a function only once if we pass in an empty array argument
   useEffect(() => {
     searchApi("chocolate");
   }, []);
