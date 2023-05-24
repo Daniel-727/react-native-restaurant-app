@@ -5,7 +5,8 @@ import ResultsDetail from "./ResultsDetail";
 
 export default withNavigation(({ title, results, navigation }) => {
   // Results is an array of objects which contain business information
-  return (
+  // If there are no results then return nothing
+  return results.length === 0 ? null : (
     <View style={styles.container}>
       <Text style={styles.titleStyle}>{title}</Text>
       <FlatList
